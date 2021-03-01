@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="PacmanFrame">
+		<title>Pacman by Jakub Sobieraj</title>
+		<size>224,184</size>
+		<id_arg>0</id_arg>
+		<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="PacmanEntity" member="yes">
+			<bitmap>C:\Users\jakub\Documents\CodeBlocksProjects\Pacman\images\pacman_open.png</bitmap>
+			<pos>0,-8</pos>
+		</object>
+	</object>
+</wxsmith>
