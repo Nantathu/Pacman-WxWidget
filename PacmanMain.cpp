@@ -139,7 +139,7 @@ void PacmanFrame::OnKeyDown(wxKeyEvent& event)
 
     if (myString == "32")
     {
-        wxWindowID wxID_ANY;
+        wxWindowID ID_STATICBITMAP1;
         wxString name = "ID_STATICBITMAP";
         wxString tempName = "";
 
@@ -164,6 +164,7 @@ void PacmanFrame::OnKeyDown(wxKeyEvent& event)
                                                );
             }
         }
+
     }
 
     PacmanEntity->SetPosition(pointCordinate);
