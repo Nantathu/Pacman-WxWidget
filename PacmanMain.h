@@ -13,6 +13,7 @@
 //(*Headers(PacmanFrame)
 #include <wx/frame.h>
 #include <wx/statbmp.h>
+#include <wx/stattext.h>
 //*)
 
 class PacmanFrame: public wxFrame
@@ -33,10 +34,16 @@ class PacmanFrame: public wxFrame
 
         //(*Identifiers(PacmanFrame)
         static const long ID_STATICBITMAP1;
+        static const long ID_STATICBITMAP2;
+        static const long ID_STATICTEXT1;
+        static const long ID_STATICTEXT2;
         //*)
 
         //(*Declarations(PacmanFrame)
         wxStaticBitmap* PacmanEntity;
+        wxStaticBitmap* PacmanMainMap;
+        wxStaticText* HighscoreText;
+        wxStaticText* TimeText;
         //*)
 
         DECLARE_EVENT_TABLE()

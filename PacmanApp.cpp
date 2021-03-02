@@ -25,6 +25,7 @@ bool PacmanApp::OnInit()
     {
     	PacmanFrame* Frame = new PacmanFrame(0);
     	Frame->Show();
+    	Frame->SetIcon(wxICON(aaaa));
     	SetTopWindow(Frame);
     }
     //*)

@@ -2,11 +2,23 @@
 <wxsmith>
 	<object class="wxFrame" name="PacmanFrame">
 		<title>Pacman by Jakub Sobieraj</title>
-		<size>224,184</size>
+		<size>320,352</size>
 		<id_arg>0</id_arg>
 		<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="PacmanEntity" member="yes">
-			<bitmap>C:\Users\jakub\Documents\CodeBlocksProjects\Pacman\images\pacman_open.png</bitmap>
-			<pos>0,-8</pos>
+			<bitmap>C:\Users\jakub\Documents\GitHub\Pacman-WxWidget\images\pacman_open.png</bitmap>
+			<pos>0,320</pos>
+		</object>
+		<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="PacmanMainMap" member="yes">
+			<pos>0,0</pos>
+			<size>320,320</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="HighscoreText" member="yes">
+			<label>Highscore:</label>
+			<pos>200,320</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT2" variable="TimeText" member="yes">
+			<label>Time:</label>
+			<pos>200,336</pos>
 		</object>
 	</object>
 </wxsmith>

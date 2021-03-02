@@ -1650,3 +1650,64 @@
 
 1595438406 c:\wxwidgets-3.1.4\include\wx\msw\rcdefs.h
 
+1614670882 source:c:\users\jakub\documents\github\pacman-wxwidget\pacmanapp.cpp
+	"PacmanApp.h"
+	"PacmanMain.h"
+	<wx/image.h>
+
+1614510264 c:\users\jakub\documents\github\pacman-wxwidget\pacmanapp.h
+	<wx/app.h>
+
+1614676818 c:\users\jakub\documents\github\pacman-wxwidget\pacmanmain.h
+	<wx/frame.h>
+	<wx/statbmp.h>
+	<wx/stattext.h>
+
+1614670781 source:c:\users\jakub\documents\github\pacman-wxwidget\resource.rc
+	"wx/msw/wx.rc"
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\stattext.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/stattext.h"
+	"wx/msw/stattext.h"
+	"wx/motif/stattext.h"
+	"wx/gtk/stattext.h"
+	"wx/gtk1/stattext.h"
+	"wx/osx/stattext.h"
+	"wx/qt/stattext.h"
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\univ\stattext.h
+	"wx/generic/stattextg.h"
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\generic\stattextg.h
+	"wx/stattext.h"
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\msw\stattext.h
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\motif\stattext.h
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\gtk\stattext.h
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\gtk1\stattext.h
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\osx\stattext.h
+
+1595438406 c:\wxwidgets-3.1.4\include\wx\qt\stattext.h
+
+1614670273 source:c:\users\jakub\documents\github\pacman-wxwidget\pacmanmain.cpp
+	"PacmanMain.h"
+	<wx/msgdlg.h>
+	<iostream>
+	<conio.h>
+	<cstdlib>
+	<windows.h>
+	<string>
+	<sstream>
+	<stdlib.h>
+	<fstream>
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/intl.h>
+	<wx/string.h>
+

@@ -18,12 +18,12 @@
 #include <stdlib.h>
 #include <fstream>
 
-#define W 32
-#define M 178
-#define PLAYER 153
-#define G 148
-#define P1 46
-#define P2 175
+constexpr int W = 32;
+constexpr int M = 178;
+constexpr int PLAYER = 153;
+constexpr int G = 148;
+constexpr int P1 = 46;
+constexpr int P2 = 175;
 
 //(*InternalHeaders(PacmanFrame)
 #include <wx/bitmap.h>
@@ -60,6 +60,9 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 
 //(*IdInit(PacmanFrame)
 const long PacmanFrame::ID_STATICBITMAP1 = wxNewId();
+const long PacmanFrame::ID_STATICBITMAP2 = wxNewId();
+const long PacmanFrame::ID_STATICTEXT1 = wxNewId();
+const long PacmanFrame::ID_STATICTEXT2 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(PacmanFrame,wxFrame)
@@ -72,11 +75,15 @@ PacmanFrame::PacmanFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(PacmanFrame)
     Create(parent, wxID_ANY, _("Pacman by Jakub Sobieraj"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(224,184));
-    PacmanEntity = new wxStaticBitmap(this, ID_STATICBITMAP1, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\CodeBlocksProjects\\Pacman\\images\\pacman_open.png"))), wxPoint(0,-8), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+    SetClientSize(wxSize(320,352));
+    PacmanEntity = new wxStaticBitmap(this, ID_STATICBITMAP1, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(0,320), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+    PacmanMainMap = new wxStaticBitmap(this, ID_STATICBITMAP2, wxNullBitmap, wxPoint(0,0), wxSize(320,320), 0, _T("ID_STATICBITMAP2"));
+    HighscoreText = new wxStaticText(this, ID_STATICTEXT1, _("Highscore:"), wxPoint(200,320), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
+    TimeText = new wxStaticText(this, ID_STATICTEXT2, _("Time:"), wxPoint(200,336), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     //*)
 
     this->SetFocus();
+
 }
 
 PacmanFrame::~PacmanFrame()
@@ -93,7 +100,8 @@ int iMapSizeX = 20;
 int iMapSizeY = 20;
 int iMapFromFile[MAX_MAP_SIZE][MAX_MAP_SIZE];
 
-int iMap[MAX_MAP_SIZE][MAX_MAP_SIZE] = {
+std::vector<std::vector<int>> mainMap
+{
     {M,M,M,M,M,M,M,M,M,W,M,M,M,M,M,M,M,M,M,M},                              //LINE 1
     {M,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P1,P2,M},            //LINE 2
     {M,P1,M,M,M,M,P1,M,M,M,P1,M,M,P1,M,M,M,M,P1,M},                         //LINE 3
@@ -129,7 +137,37 @@ void PacmanFrame::OnKeyDown(wxKeyEvent& event)
     if (myString == "317")
         pointCordinate.y += 5;
 
+    if (myString == "32")
+    {
+        wxWindowID wxID_ANY;
+        wxString name = "ID_STATICBITMAP";
+        wxString tempName = "";
+
+        int num = 0;
+
+        name << num;
+        wxStaticBitmap* mainMap[20][20];
+
+        for (int i = 0; i < 20; i++)
+        {
+            for (int j = 0; j < 20; j++)
+            {
+                tempName = name;
+                tempName << i << j;
+                mainMap[i][j] = new wxStaticBitmap(
+                                               this,
+                                               wxID_ANY,
+                                               wxBitmap(wxImage(_T("images/wall.png")).Rescale(wxSize(16, 16).GetWidth(), wxSize(16, 16).GetHeight())),
+                                               wxPoint(i * 20, j * 20),
+                                               wxSize(20, 20),
+                                               0
+                                               );
+            }
+        }
+    }
+
     PacmanEntity->SetPosition(pointCordinate);
+    PacmanEntity->Refresh();
 }
 
 void PacmanFrame::MapRender()
@@ -138,43 +176,19 @@ void PacmanFrame::MapRender()
         {
             for (int j = 0; j <= MAP_SIZE_X - 1; j++)
             {
-                iMapFromFile[i][j] = iMap[i][j];
+                iMapFromFile[i][j] = mainMap[i][j];
             }// end for j <= MAP_SIZE_X
         }// endfor i <= MAP_SIZE_Y
 }
 
-void PacmanFrame::saveMapFile(char* FileName)
-{
-    fstream file;
-    file.open(FileName, ios::out);
-
-    if (file.good() == true)
-    {
-        file << MAP_SIZE_X << " " << '\n';
-        file << MAP_SIZE_Y << " " << '\n';
-        for (int i = 0; i < MAP_SIZE_Y; i++)
-        {
-            for (int j = 0; j < MAP_SIZE_X; j++)
-            {
-                file << iMap[i][j] << " ";
-            }// endfor j < MAP_SIZE_X
-            file << '\n';
-        }// endfor j < MAP_SIZE_Y
-        file.close();
-    }
-    else {
-        cout << "File missing";
-    }// endif file.good() == true
-}
-
 void PacmanFrame::loadMapFile(char* FileName)
 {
-    fstream file;
-    file.open(FileName, ios::in);
+    std::fstream file;
+    file.open(FileName, std::ios::in);
 
     if (file.good() == false)
     {
-        cout << "File doesn't exist" << '\n';
+        std::cout << "File doesn't exist" << '\n';
         exit(0);
     }
     else
