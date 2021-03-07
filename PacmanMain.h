@@ -34,15 +34,21 @@ class PacmanFrame: public wxFrame
 
         //(*Identifiers(PacmanFrame)
         static const long ID_STATICBITMAP1;
-        static const long ID_STATICBITMAP2;
         static const long ID_STATICTEXT1;
         static const long ID_STATICTEXT2;
+        static const long ID_STATICTEXT3;
+        static const long ID_STATICBITMAP2;
+        static const long ID_STATICBITMAP3;
+        static const long ID_STATICBITMAP4;
         //*)
 
         //(*Declarations(PacmanFrame)
         wxStaticBitmap* PacmanEntity;
-        wxStaticBitmap* PacmanMainMap;
+        wxStaticBitmap* PlayerHealth1;
+        wxStaticBitmap* PlayerHealth2;
+        wxStaticBitmap* PlayerHealth3;
         wxStaticText* HighscoreText;
+        wxStaticText* StaticText1;
         wxStaticText* TimeText;
         //*)
 

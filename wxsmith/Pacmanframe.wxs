@@ -6,11 +6,7 @@
 		<id_arg>0</id_arg>
 		<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="PacmanEntity" member="yes">
 			<bitmap>C:\Users\jakub\Documents\GitHub\Pacman-WxWidget\images\pacman_open.png</bitmap>
-			<pos>0,320</pos>
-		</object>
-		<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="PacmanMainMap" member="yes">
-			<pos>0,0</pos>
-			<size>320,320</size>
+			<pos>32,32</pos>
 		</object>
 		<object class="wxStaticText" name="ID_STATICTEXT1" variable="HighscoreText" member="yes">
 			<label>Highscore:</label>
@@ -19,6 +15,22 @@
 		<object class="wxStaticText" name="ID_STATICTEXT2" variable="TimeText" member="yes">
 			<label>Time:</label>
 			<pos>200,336</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText1" member="yes">
+			<label>Lifes:</label>
+			<pos>104,320</pos>
+		</object>
+		<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="PlayerHealth1" member="yes">
+			<bitmap>C:\Users\jakub\Documents\GitHub\Pacman-WxWidget\images\pacman_open.png</bitmap>
+			<pos>135,320</pos>
+		</object>
+		<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="PlayerHealth2" member="yes">
+			<bitmap>C:\Users\jakub\Documents\GitHub\Pacman-WxWidget\images\pacman_open.png</bitmap>
+			<pos>155,320</pos>
+		</object>
+		<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="PlayerHealth3" member="yes">
+			<bitmap>C:\Users\jakub\Documents\GitHub\Pacman-WxWidget\images\pacman_open.png</bitmap>
+			<pos>175,320</pos>
 		</object>
 	</object>
 </wxsmith>

@@ -20,8 +20,6 @@
 
 constexpr int W = 32;
 constexpr int M = 178;
-constexpr int PLAYER = 153;
-constexpr int G = 148;
 constexpr int P1 = 46;
 constexpr int P2 = 175;
 
@@ -60,9 +58,12 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 
 //(*IdInit(PacmanFrame)
 const long PacmanFrame::ID_STATICBITMAP1 = wxNewId();
-const long PacmanFrame::ID_STATICBITMAP2 = wxNewId();
 const long PacmanFrame::ID_STATICTEXT1 = wxNewId();
 const long PacmanFrame::ID_STATICTEXT2 = wxNewId();
+const long PacmanFrame::ID_STATICTEXT3 = wxNewId();
+const long PacmanFrame::ID_STATICBITMAP2 = wxNewId();
+const long PacmanFrame::ID_STATICBITMAP3 = wxNewId();
+const long PacmanFrame::ID_STATICBITMAP4 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(PacmanFrame,wxFrame)
@@ -77,9 +78,12 @@ PacmanFrame::PacmanFrame(wxWindow* parent,wxWindowID id)
     Create(parent, wxID_ANY, _("Pacman by Jakub Sobieraj"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(320,352));
     PacmanEntity = new wxStaticBitmap(this, ID_STATICBITMAP1, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(0,320), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
-    PacmanMainMap = new wxStaticBitmap(this, ID_STATICBITMAP2, wxNullBitmap, wxPoint(0,0), wxSize(320,320), 0, _T("ID_STATICBITMAP2"));
     HighscoreText = new wxStaticText(this, ID_STATICTEXT1, _("Highscore:"), wxPoint(200,320), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     TimeText = new wxStaticText(this, ID_STATICTEXT2, _("Time:"), wxPoint(200,336), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    StaticText1 = new wxStaticText(this, ID_STATICTEXT3, _("Lifes:"), wxPoint(104,320), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    PlayerHealth1 = new wxStaticBitmap(this, ID_STATICBITMAP2, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(135,320), wxDefaultSize, 0, _T("ID_STATICBITMAP2"));
+    PlayerHealth2 = new wxStaticBitmap(this, ID_STATICBITMAP3, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(155,320), wxDefaultSize, 0, _T("ID_STATICBITMAP3"));
+    PlayerHealth3 = new wxStaticBitmap(this, ID_STATICBITMAP4, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(175,320), wxDefaultSize, 0, _T("ID_STATICBITMAP4"));
     //*)
 
     this->SetFocus();
@@ -94,7 +98,7 @@ PacmanFrame::~PacmanFrame()
 
 const int MAX_MAP_SIZE = 20;
 const int MAP_SIZE_X = 20;
-const int MAP_SIZE_Y = 19;
+const int MAP_SIZE_Y = 20;
 
 int iMapSizeX = 20;
 int iMapSizeY = 20;
@@ -129,13 +133,29 @@ void PacmanFrame::OnKeyDown(wxKeyEvent& event)
     wxPoint pointCordinate = PacmanEntity->GetPosition();
 
     if (myString == "314")
-        pointCordinate.x -= 5;
+    {
+        pointCordinate.x -= 16;
+        Sleep(10);
+        std::cout << "Lewo" << std::endl;
+    }
     if (myString == "316")
-        pointCordinate.x += 5;
+    {
+        pointCordinate.x += 16;
+        Sleep(10);
+       std::cout << "Prawo" << std::endl;
+    }
     if (myString == "315")
-        pointCordinate.y -= 5;
+    {
+        pointCordinate.y -= 16;
+        Sleep(10);
+        std::cout << "Gora" << std::endl;
+    }
     if (myString == "317")
-        pointCordinate.y += 5;
+    {
+        pointCordinate.y += 16;
+        Sleep(10);
+        std::cout << "Dol" << std::endl;
+    }
 
     if (myString == "32")
     {
@@ -155,14 +175,14 @@ void PacmanFrame::OnKeyDown(wxKeyEvent& event)
                 tempName = name;
                 tempName << i << j;
                 mainMap[i][j] = new wxStaticBitmap(
-                                               this,
-                                               wxID_ANY,
-                                               wxBitmap(wxImage(_T("images/wall.png")).Rescale(wxSize(16, 16).GetWidth(), wxSize(16, 16).GetHeight())),
-                                               wxPoint(i * 20, j * 20),
-                                               wxSize(20, 20),
-                                               0
-                                               );
-            }
+                                                       this,
+                                                       wxID_ANY,
+                                                       wxBitmap(wxImage(_T("images/wall.png")).Rescale(wxSize(16, 16).GetWidth(), wxSize(16, 16).GetHeight())),
+                                                       wxPoint(i * 16, j * 16),
+                                                       wxSize(16, 16),
+                                                       0
+                                                   );
+                }
         }
 
     }
@@ -173,35 +193,11 @@ void PacmanFrame::OnKeyDown(wxKeyEvent& event)
 
 void PacmanFrame::MapRender()
 {
-    for (int i = 0; i <= MAP_SIZE_Y - 1; i++)
+    for (int i = 0; i <= MAP_SIZE_Y; i++)
         {
-            for (int j = 0; j <= MAP_SIZE_X - 1; j++)
+            for (int j = 0; j <= MAP_SIZE_X; j++)
             {
                 iMapFromFile[i][j] = mainMap[i][j];
             }// end for j <= MAP_SIZE_X
         }// endfor i <= MAP_SIZE_Y
-}
-
-void PacmanFrame::loadMapFile(char* FileName)
-{
-    std::fstream file;
-    file.open(FileName, std::ios::in);
-
-    if (file.good() == false)
-    {
-        std::cout << "File doesn't exist" << '\n';
-        exit(0);
-    }
-    else
-    {
-        file >> iMapSizeX;
-        file >> iMapSizeY;
-        for (int i = 0; i < iMapSizeY; i++)
-        {
-            for (int j = 0; j < iMapSizeX; j++)
-            {
-                file >> iMapFromFile[i][j];
-            }// endfor j < iMapSizeX
-        }// endfor i < iMapSizeY
-    }// endif file.good() == false
 }
