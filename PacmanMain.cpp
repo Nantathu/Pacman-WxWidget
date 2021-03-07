@@ -77,7 +77,7 @@ PacmanFrame::PacmanFrame(wxWindow* parent,wxWindowID id)
     //(*Initialize(PacmanFrame)
     Create(parent, wxID_ANY, _("Pacman by Jakub Sobieraj"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(320,352));
-    PacmanEntity = new wxStaticBitmap(this, ID_STATICBITMAP1, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(0,320), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+    PacmanEntity = new wxStaticBitmap(this, ID_STATICBITMAP1, wxBitmap(wxImage(_T("C:\\Users\\jakub\\Documents\\GitHub\\Pacman-WxWidget\\images\\pacman_open.png"))), wxPoint(32,32), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
     HighscoreText = new wxStaticText(this, ID_STATICTEXT1, _("Highscore:"), wxPoint(200,320), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     TimeText = new wxStaticText(this, ID_STATICTEXT2, _("Time:"), wxPoint(200,336), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticText1 = new wxStaticText(this, ID_STATICTEXT3, _("Lifes:"), wxPoint(104,320), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
